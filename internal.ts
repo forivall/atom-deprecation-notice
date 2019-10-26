@@ -1,4 +1,13 @@
-import { Package, NotificationOptions } from 'atom';
+import { Package, NotificationOptions, PackageManager } from 'atom';
+
+interface DeprecatedPackageEntry {
+  message?: string
+  hasAlternative?: boolean
+  alternative?: string
+  version?: string
+  hasDeprecations?: boolean
+  latestHasDeprecations?: boolean
+}
 
 interface PackageJson {
   name: string
@@ -6,10 +15,16 @@ interface PackageJson {
   deprecationNotice?: DeprecationNoticeConfig
 }
 
-interface DeprecationNoticeConfig {
+interface DeprecationNoticeConfig extends DeprecatedPackageEntry {
   message?: string
   description?: NotificationOptions['description']
   detail?: NotificationOptions['detail']
+}
+
+interface PackageManagerExt extends PackageManager {
+  deprecatedPackages: {
+    [name: string]: DeprecatedPackageEntry
+  }
 }
 
 interface PackageExt extends Package {
@@ -35,12 +50,42 @@ export default function internalNotice(module: NodeModule | null) {
   }
 
   const meta = p.metadata;
-  const config = {
+
+  (atom.packages as PackageManagerExt).deprecatedPackages[p.name] = meta.deprecationNotice || {}
+
+  const configPath = `${p.name}.hideDeprecationMessage`
+
+  if (atom.config.get(configPath)) {
+    return;
+  }
+
+  const config: NotificationOptions & DeprecationNoticeConfig = {
     icon: 'issue-opened',
     message: `The ${p.name} package is deprecated.`,
     description: meta.deprecated,
     ...meta.deprecationNotice,
+    buttons: [{
+      text: 'Open Settings',
+      onDidClick() {
+        notification.dismiss();
+        atom.workspace.open('atom://config/packages/remember-folds')
+      }
+    }, {
+      text: 'Disable Package',
+      className: 'btn btn-warning btn-primary',
+      onDidClick() {
+        notification.dismiss();
+        atom.packages.disablePackage(p.name);
+      },
+    }, {
+      text: 'Ignore',
+      className: 'btn btn-warning',
+      onDidClick() {
+        notification.dismiss();
+        atom.config.set(configPath, true);
+      }
+    }]
   }
 
-  atom.notifications.addWarning(config.message, config)
+  const notification = atom.notifications.addWarning(config.message!, config)
 }
