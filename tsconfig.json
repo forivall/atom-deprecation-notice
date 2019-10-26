@@ -9,8 +9,9 @@
     "baseUrl": "./"
   },
   "include": [
-    "typings/**/*.ts",
-    "lib/**/*.ts",
-    "test/**/*.ts"
+    "**/*.ts"
+  ],
+  "exclude": [
+    "build/**"
   ]
 }

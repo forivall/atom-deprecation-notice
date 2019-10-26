@@ -1,14 +1,33 @@
 {
   "name": "atom-deprecation-notice",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Deprecation Notice for Atom editor packages",
+  "keywords": [
+    "atom",
+    "atom-editor",
+    "depd",
+    "deprecate",
+    "deprecation",
+    "notification"
+  ],
+  "homepage": "https://github.com/forivall/atom-deprecation-notice#readme",
+  "bugs": "https://github.com/forivall/atom-deprecation-notice/issues",
+  "repository": {
+    "type": "github",
+    "url": "forivall/atom-deprecation-notice"
+  },
+  "license": "ISC",
+  "author": "Emily Marigold Klassen <forivall@gmail.com>",
+  "main": "build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "xo": {
+    "extends": "xo-typescript",
+    "extensions": [
+      "ts"
+    ]
+  },
   "devDependencies": {
     "@atom/mocha-test-runner": "^1.6.0",
     "@types/atom": "^1.36.1",
@@ -20,5 +39,8 @@
     "mocha": "^6.2.2",
     "typescript": "^3.6.4",
     "xo": "^0.25.3"
+  },
+  "engines": {
+    "atom": "*"
   }
 }
