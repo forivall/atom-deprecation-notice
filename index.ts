@@ -1,12 +1,12 @@
-delete require.cache[module.id];
+delete require.cache[module.id]
 
 import showDeprecationNoticeInternal from './internal'
 
-export function activate() {
-  return showDeprecationNoticeInternal(module.parent);
+export function activate(): void {
+  return showDeprecationNoticeInternal(module.parent)
 }
 
-export default activate;
+export default activate
 
 // Add exports to default for compatability
 module.exports = Object.getOwnPropertyNames(exports).reduce(

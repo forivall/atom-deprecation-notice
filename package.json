@@ -26,7 +26,31 @@
     "extends": "xo-typescript",
     "extensions": [
       "ts"
-    ]
+    ],
+    "global": "atom",
+    "space": 2,
+    "semi": false,
+    "rules": {
+      "no-eq-null": "off",
+      "eqeqeq": ["error", "always", {"null": "ignore"}],
+      "semi-style": ["error", "first"],
+      "@typescript-eslint/explicit-function-return-type": "warn",
+      "@typescript-eslint/indent": [
+        "error",
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "@typescript-eslint/no-unnecessary-condition": "warn",
+      "@typescript-eslint/semi": [
+        "error",
+        "never", {
+          "beforeStatementContinuationChars": "always"
+        }
+      ],
+      "@typescript-eslint/strict-boolean-expressions": "off"
+    }
   },
   "devDependencies": {
     "@atom/mocha-test-runner": "^1.6.0",
@@ -34,6 +58,8 @@
     "@types/chai": "^4.2.3",
     "@types/mocha": "^5.2.7",
     "@types/node": "^8.10.55",
+    "@typescript-eslint/eslint-plugin": "^2.5.0",
+    "@typescript-eslint/parser": "^2.5.0",
     "chai": "^4.2.0",
     "eslint-config-xo-typescript": "^0.19.0",
     "mocha": "^6.2.2",
