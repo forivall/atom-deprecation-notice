@@ -32,8 +32,17 @@
     "semi": false,
     "rules": {
       "no-eq-null": "off",
-      "eqeqeq": ["error", "always", {"null": "ignore"}],
-      "semi-style": ["error", "first"],
+      "eqeqeq": [
+        "error",
+        "always",
+        {
+          "null": "ignore"
+        }
+      ],
+      "semi-style": [
+        "error",
+        "first"
+      ],
       "@typescript-eslint/explicit-function-return-type": "warn",
       "@typescript-eslint/indent": [
         "error",
@@ -45,7 +54,8 @@
       "@typescript-eslint/no-unnecessary-condition": "warn",
       "@typescript-eslint/semi": [
         "error",
-        "never", {
+        "never",
+        {
           "beforeStatementContinuationChars": "always"
         }
       ],
@@ -60,7 +70,7 @@
     "@types/node": "^8.10.55",
     "@typescript-eslint/eslint-plugin": "^2.5.0",
     "@typescript-eslint/parser": "^2.5.0",
-    "chai": "^4.2.0",
+    "chai": "^4.3.6",
     "eslint-config-xo-typescript": "^0.19.0",
     "mocha": "^6.2.2",
     "typescript": "^3.6.4",
