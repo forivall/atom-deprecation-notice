@@ -63,7 +63,7 @@
     }
   },
   "devDependencies": {
-    "@atom/mocha-test-runner": "^1.6.0",
+    "@atom/mocha-test-runner": "^1.6.1",
     "@types/atom": "^1.36.1",
     "@types/chai": "^4.2.3",
     "@types/mocha": "^5.2.7",
